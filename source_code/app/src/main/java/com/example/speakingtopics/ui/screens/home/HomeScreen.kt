@@ -23,6 +23,7 @@ import com.example.speakingtopics.R
 fun HomeScreen(
     modifier: Modifier = Modifier.fillMaxSize(),
     onNavigateToTopicDetails: () -> Unit,
+    onNavigateToLibrary: () -> Unit
 ) {
 // A surface container using the 'background' color from the theme
     Surface(
@@ -71,7 +72,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .padding(32.dp)
                     .wrapContentSize(),
-                onClick = { /*TODO: implement */ }
+                onClick = onNavigateToLibrary
             ) {
                 Text(
                     modifier = Modifier.padding(32.dp),

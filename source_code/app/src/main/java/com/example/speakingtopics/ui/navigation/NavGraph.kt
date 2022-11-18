@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.speakingtopics.ui.screens.home.HomeScreen
 import com.example.speakingtopics.ui.screens.topicdetails.TopicDetailsScreen
+import com.example.speakingtopics.ui.screens.topiclibrary.TopicLibraryScreen
 
 @Composable
 fun NavGraph(
@@ -19,11 +20,17 @@ fun NavGraph(
             HomeScreen(
                 onNavigateToTopicDetails = {
                     navController.navigate(Destination.TopicDetailsScreen.route)
+                },
+                onNavigateToLibrary = {
+                    navController.navigate((Destination.TopicLibraryScreen.route))
                 }
             )
         }
         composable(Destination.TopicDetailsScreen.route) {
             TopicDetailsScreen()
+        }
+        composable(Destination.TopicLibraryScreen.route) {
+            TopicLibraryScreen()
         }
     }
 }
