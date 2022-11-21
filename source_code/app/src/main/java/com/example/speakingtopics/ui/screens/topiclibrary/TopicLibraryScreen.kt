@@ -15,11 +15,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.speakingtopics.R
+import org.koin.androidx.compose.koinViewModel
+import androidx.compose.foundation.lazy.items
 
+
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun TopicLibraryScreen(
-    modifier: Modifier = Modifier.fillMaxSize()
+    modifier: Modifier = Modifier.fillMaxSize(),
+    viewModel: TopicLibraryVM = koinViewModel(),
+    onNavigateToTopicDetails: (topicId: Int) -> Unit,
 ) {
+
     Surface(
         modifier = modifier,
         color = MaterialTheme.colors.surface
@@ -44,9 +51,7 @@ fun TopicLibraryScreen(
                 )
             }
 
-            // The following items collection is just for testing purposes.
-            // It should be replaced with real implementation in future
-            items(50) { index ->
+            items(viewModel.allTopics) { item ->
                 Card(
                     modifier = modifier
 
@@ -54,17 +59,19 @@ fun TopicLibraryScreen(
                         .padding(16.dp)
                         .clickable { },
                     elevation = 10.dp,
-                    backgroundColor = colorResource(id = R.color.green_milk_dark)
+                    backgroundColor = colorResource(id = R.color.green_milk_dark),
+                    onClick = { onNavigateToTopicDetails(item.id) }
                 ) {
-                    Column(modifier = modifier
-                        .padding(16.dp)
+                    Column(
+                        modifier = modifier
+                            .padding(16.dp)
                     ) {
                         Text(
                             modifier = modifier,
-                            text = "Testing topic number: $index")
+                            text = item.topic
+                        )
                     }
                 }
-
             }
         }
     }

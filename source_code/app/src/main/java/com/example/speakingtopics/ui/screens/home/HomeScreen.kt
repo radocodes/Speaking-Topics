@@ -3,10 +3,7 @@ package com.example.speakingtopics.ui.screens.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,12 +15,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.speakingtopics.R
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier.fillMaxSize(),
-    onNavigateToTopicDetails: () -> Unit,
-    onNavigateToLibrary: () -> Unit
+    onNavigateToTopicDetails: (topicId: Int) -> Unit,
+    onNavigateToLibrary: () -> Unit,
+    viewModel: HomeVM = koinViewModel()
 ) {
 // A surface container using the 'background' color from the theme
     Surface(
@@ -47,39 +46,43 @@ fun HomeScreen(
                 textAlign = TextAlign.Center
             )
 
-            Button(
-                modifier = Modifier
-                    .padding(32.dp)
-                    .wrapContentSize(),
-                onClick = onNavigateToTopicDetails
-            ) {
-                Text(
-                    modifier = Modifier.padding(32.dp),
-                    text = "Get Random Topic",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp
-                )
-            }
+            if (viewModel.isLoading) {
+                CircularProgressIndicator()
+            } else {
+                Button(
+                    modifier = Modifier
+                        .padding(32.dp)
+                        .wrapContentSize(),
+                    onClick = { onNavigateToTopicDetails(viewModel.randomTopicId) }
+                ) {
+                    Text(
+                        modifier = Modifier.padding(32.dp),
+                        text = "Get Random Topic",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 24.sp
+                    )
+                }
 
-            Text(
-                text = "or",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                fontStyle = FontStyle.Italic
-            )
-
-            Button(
-                modifier = Modifier
-                    .padding(32.dp)
-                    .wrapContentSize(),
-                onClick = onNavigateToLibrary
-            ) {
                 Text(
-                    modifier = Modifier.padding(32.dp),
-                    text = "Select Topic",
+                    text = "or",
+                    fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp
+                    fontStyle = FontStyle.Italic
                 )
+
+                Button(
+                    modifier = Modifier
+                        .padding(32.dp)
+                        .wrapContentSize(),
+                    onClick = onNavigateToLibrary
+                ) {
+                    Text(
+                        modifier = Modifier.padding(32.dp),
+                        text = "Select Topic",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 24.sp
+                    )
+                }
             }
         }
     }
