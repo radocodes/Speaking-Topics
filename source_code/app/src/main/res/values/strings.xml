@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">SpeakingTopics</string>
+
+    <!-- Custom Top App Bar -->
+    <string name="content_description_custom_top_app_bar_icon_arrow_back">Navigate Back</string>
+
+    <!-- Home screen -->
+    <string name="content_description_home_screen_header_image">Home Header Board</string>
+    <string name="home_screen_header">Improve Your Speech</string>
+    <string name="home_screen_txt_btn_random_topic">Get Random Topic</string>
+    <string name="home_screen_txt_btn_select_topic">Select</string>
+    <string name="home_screen_txt_btn_separator">Or</string>
+
+
+
 </resources>

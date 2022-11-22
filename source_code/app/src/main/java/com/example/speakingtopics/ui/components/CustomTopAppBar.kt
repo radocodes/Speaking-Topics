@@ -8,8 +8,10 @@ import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.speakingtopics.R
 import com.example.speakingtopics.ui.navigation.Destination
 
 @Composable
@@ -46,7 +48,11 @@ fun CustomTopAppBar(
                     modifier = modifier.wrapContentSize(),
                     onClick = navController::navigateUp,
                 ) {
-                    Icon(Icons.Outlined.ArrowBack, "Navigate Back", tint = Color.White)
+                    Icon(
+                        Icons.Outlined.ArrowBack,
+                        stringResource(id = R.string.content_description_custom_top_app_bar_icon_arrow_back),
+                        tint = Color.White
+                    )
                 }
         }
     )

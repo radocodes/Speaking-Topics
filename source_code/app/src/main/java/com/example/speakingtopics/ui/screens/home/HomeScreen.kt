@@ -8,10 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.speakingtopics.R
@@ -34,15 +37,15 @@ fun HomeScreen(
         ) {
             Image(
                 painterResource(id = R.drawable.home_header_board),
-                contentDescription = "Home Header Board"
+                contentDescription = stringResource(id = R.string.content_description_home_screen_header_image)
             )
             
             Text(
+                text = stringResource(id = R.string.home_screen_header),
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(color = colorResource(id = R.color.green_milk_dark)),
-                text = "Improve Your Speech",
-                fontSize = 36.sp,
+                fontSize = dimensionResource(id = R.dimen.home_screen_txt_header_font_size).value.sp,
                 textAlign = TextAlign.Center
             )
 
@@ -51,36 +54,36 @@ fun HomeScreen(
             } else {
                 Button(
                     modifier = Modifier
-                        .padding(32.dp)
+                        .padding(dimensionResource(id = R.dimen.home_screen_btn_padding))
                         .wrapContentSize(),
                     onClick = { onNavigateToTopicDetails(viewModel.randomTopicId) }
                 ) {
                     Text(
-                        modifier = Modifier.padding(32.dp),
-                        text = "Get Random Topic",
+                        modifier = Modifier.padding(dimensionResource(id = R.dimen.home_screen_btn_padding)),
+                        text = stringResource(id = R.string.home_screen_txt_btn_random_topic),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 24.sp
+                        fontSize = dimensionResource(id = R.dimen.home_screen_btn_txt_font_size).value.sp
                     )
                 }
 
                 Text(
-                    text = "or",
-                    fontSize = 24.sp,
+                    text = stringResource(id = R.string.home_screen_txt_btn_separator),
+                    fontSize = dimensionResource(id = R.dimen.home_screen_btn_txt_font_size).value.sp,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic
                 )
 
                 Button(
                     modifier = Modifier
-                        .padding(32.dp)
+                        .padding(dimensionResource(id = R.dimen.home_screen_btn_padding))
                         .wrapContentSize(),
                     onClick = onNavigateToLibrary
                 ) {
                     Text(
-                        modifier = Modifier.padding(32.dp),
-                        text = "Select Topic",
+                        modifier = Modifier.padding(dimensionResource(id = R.dimen.home_screen_btn_padding)),
+                        text = stringResource(id = R.string.home_screen_txt_btn_select_topic),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 24.sp
+                        fontSize = dimensionResource(id = R.dimen.home_screen_btn_txt_font_size).value.sp
                     )
                 }
             }
